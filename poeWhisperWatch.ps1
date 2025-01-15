@@ -101,14 +101,14 @@ $form.Controls.Add($labelLogFile)
 # Log File TextBox
 $textboxLogFile = New-Object System.Windows.Forms.TextBox
 $textboxLogFile.Location = New-Object System.Drawing.Point(20, 120)
-$textboxLogFile.Size = New-Object System.Drawing.Size(340, 25)  # Adjusted width to fit the Browse button
+$textboxLogFile.Size = New-Object System.Drawing.Size(340, 25)
 $textboxLogFile.Text = $config.LogFilePath
 $form.Controls.Add($textboxLogFile)
 
 # Browse Button
 $buttonBrowse = New-Object System.Windows.Forms.Button
 $buttonBrowse.Text = "Browse..."
-$buttonBrowse.Location = New-Object System.Drawing.Point(375, 120)  # Adjusted to align with the text box
+$buttonBrowse.Location = New-Object System.Drawing.Point(375, 120)
 $buttonBrowse.Size = New-Object System.Drawing.Size(85, 25)
 $buttonBrowse.BackColor = [System.Drawing.Color]::FromArgb(58, 62, 71)
 $buttonBrowse.ForeColor = [System.Drawing.Color]::White
@@ -201,6 +201,11 @@ $buttonStart.Add_Click({
 $buttonPause.Add_Click({
     $isPaused = $true
     $labelStatus.Text = "Monitoring paused..."
+})
+
+# Form Closing Event to Ensure Proper Exit
+$form.add_FormClosing({
+    [System.Windows.Forms.Application]::Exit()
 })
 
 # Show the form
